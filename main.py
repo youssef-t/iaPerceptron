@@ -75,5 +75,6 @@ for i, raw in enumerate(inputs):
 
 print("error_values:\n{}\n".format(error_values))
 
-plt.plot(error_values.T)
+x, y = error_values.T
+plt.plot(x, y)
 plt.show()
