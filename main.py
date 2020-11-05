@@ -46,35 +46,27 @@ def activation_function(x):
         return 1
 
 
-def calculate_prediction(inputs, w1, w2):
-    ret_1 = inputs[0] * w1
-    ret_2 = inputs[1] * w2
+def calculate_prediction(inputs_local, w1_local, w2_local):
+    ret_1 = inputs_local[0] * w1_local
+    ret_2 = inputs_local[1] * w2_local
 
     return activation_function(ret_1 + ret_2)
 
 
-def calculate_error(output, expected_output):
-    return 0.5 * (output - expected_output)**2
+def calculate_error(output_local, expected_output):
+    return 0.5 * (output_local - expected_output)**2
 
 
-w1 = 0
-w2 = 0
-predictions = []
+error_values = np.zeros((11, 11))
 for i, raw in enumerate(inputs):
-    for w1 in range(-5, 5):
-        for w2 in range(-5, 5):
+    # w1 and w2 between -5 and 5
+    for w1 in range(-5, 6):
+        for w2 in range(-5, 6):
             output = calculate_prediction(raw, w1, w2)
-            predictions.append(output)
-
             error_value = calculate_error(output, expected_outputs[i])
-            # Create in first iteration
-            if i == 0:
-                error_values = np.array([[error_value, error_value]])
-            else:
-                error_values = np.concatenate((error_values, np.array([[error_value, error_value]])))
+            error_values[w1+5][w2+5] = error_values[w1+5][w2+5] + error_value
+print(error_values)
 
-print("error_values:\n{}\n".format(error_values))
-
-x, y = error_values.T
-plt.plot(x, y)
+plt.imshow(error_values)
 plt.show()
+
