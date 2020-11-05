@@ -60,7 +60,6 @@ def calculate_error(output, expected_output):
 w1 = 0
 w2 = 0
 predictions = []
-error_values = np.array([])
 for i, raw in enumerate(inputs):
     for w1 in range(-5, 5):
         for w2 in range(-5, 5):
@@ -68,9 +67,13 @@ for i, raw in enumerate(inputs):
             predictions.append(output)
 
             error_value = calculate_error(output, expected_outputs[i])
-            error_values = np.append(error_values, np.array([[error_value, error_value]]))
+            # Create in first iteration
+            if i == 0:
+                error_values = np.array([[error_value, error_value]])
+            else:
+                error_values = np.concatenate((error_values, np.array([[error_value, error_value]])))
 
 print("error_values:\n{}\n".format(error_values))
 
-plt.imshow(error_values)
+plt.plot(error_values.T)
 plt.show()
