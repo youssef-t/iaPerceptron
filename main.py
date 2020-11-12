@@ -43,7 +43,7 @@ expected_outputs = np.array([0, 0, 0, 1])
 
 perceptron = perceptron.Perceptron(input_numbers=len(inputs), epoch=1, learning_rate=1)
 
-error_values = perceptron.predict(inputs, expected_outputs)
+error_values = perceptron.predict_all_errors(inputs, expected_outputs)
 
 plt.imshow(error_values)
 plt.show()
