@@ -25,6 +25,5 @@ class Perceptron:
 
         return self.activation_function(ret_1 + ret_2)
 
-
     def calculate_error(self, output_local, expected_output):
         return 0.5 * (output_local - expected_output) ** 2

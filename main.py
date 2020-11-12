@@ -1,10 +1,12 @@
 import csv
 import random
-from character import Character
-from army import Army
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
+
 import perceptron
+from army import Army
+from character import Character
 
 characters = []
 with open('characters.csv', newline='') as csvfile:
@@ -45,4 +47,3 @@ error_values = perceptron.predict(inputs, expected_outputs)
 
 plt.imshow(error_values)
 plt.show()
-
