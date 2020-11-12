@@ -9,8 +9,8 @@ from army import Army
 from character import Character
 
 characters = []
-with open('characters.csv', newline='') as csvfile:
-    rows = csv.reader(csvfile, delimiter=',')
+with open('characters.csv', newline='') as csv_file:
+    rows = csv.reader(csv_file, delimiter=',')
     skip_first_iteration = 0
     for row in rows:
         if skip_first_iteration > 0:
@@ -50,9 +50,9 @@ error_values = perceptron.train(inputs, expected_outputs)
 # Write weights to CSV
 print("w1: {} - w2: {}".format(perceptron.get_w1(), perceptron.get_w2()))
 with open('output.csv', 'w', newline='') as csvfile:
-    spamwriter = csv.writer(csvfile, delimiter=';', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    spamwriter.writerow(["w1", "w2"])
-    spamwriter.writerow([perceptron.get_w1(), perceptron.get_w2()])
+    spam_writer = csv.writer(csvfile, delimiter=';', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    spam_writer.writerow(["w1", "w2"])
+    spam_writer.writerow([perceptron.get_w1(), perceptron.get_w2()])
 
 # Display errors values
 plt.imshow(error_values)
