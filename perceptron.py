@@ -2,6 +2,15 @@ import numpy as np
 
 
 class Perceptron:
+    def __init__(self, input_numbers, epoch, learning_rate):
+        self.input_numbers = input_numbers
+        self.epoch = epoch
+        self.learning_rate = learning_rate
+
+        self.w1 = 0
+        self.w2 = 0
+        self.biais = 1
+
     def predict(self, inputs, expected_outputs):
         error_values = np.zeros((11, 11))
         for i, raw in enumerate(inputs):

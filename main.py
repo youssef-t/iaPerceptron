@@ -41,7 +41,7 @@ print("tableau_moral_total:\n{}\n".format(tableau_moral_total))
 inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 expected_outputs = np.array([0, 0, 0, 1])
 
-perceptron = perceptron.Perceptron()
+perceptron = perceptron.Perceptron(input_numbers=len(inputs), epoch=1, learning_rate=1)
 
 error_values = perceptron.predict(inputs, expected_outputs)
 
