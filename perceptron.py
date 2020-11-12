@@ -7,9 +7,11 @@ class Perceptron:
         self.epoch = epoch
         self.learning_rate = learning_rate
 
-        self.w1 = 0
-        self.w2 = 0
-        self.biais = 1
+        self.w0 = 0.0
+        self.w1 = 0.0
+        self.w2 = 0.0
+
+        self.BIAIS = 1
 
     def get_w1(self):
         return self.w1
@@ -35,10 +37,11 @@ class Perceptron:
             return 1
 
     def predict(self, inputs_local):
+        ret_0 = self.BIAIS * self.w0
         ret_1 = inputs_local[0] * self.w1
         ret_2 = inputs_local[1] * self.w2
 
-        return self.activation_function(ret_1 + ret_2)
+        return self.activation_function(ret_0 + ret_1 + ret_2)
 
     def calculate_error(self, output_local, expected_output):
         return 0.5 * (output_local - expected_output) ** 2
