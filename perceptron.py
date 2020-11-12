@@ -15,11 +15,11 @@ class Perceptron:
         error_values = np.zeros((11, 11))
         for i, raw in enumerate(inputs):
             # w1 and w2 between -5 and 5
-            for w1 in range(-5, 6):
-                for w2 in range(-5, 6):
-                    output = self.predict(raw, w1, w2)
+            for self.w1 in range(-5, 6):
+                for self.w2 in range(-5, 6):
+                    output = self.predict(raw)
                     error_value = self.calculate_error(output, expected_outputs[i])
-                    error_values[w1 + 5][w2 + 5] = error_values[w1 + 5][w2 + 5] + error_value
+                    error_values[self.w1 + 5][self.w2 + 5] = error_values[self.w1 + 5][self.w2 + 5] + error_value
         return error_values
 
     def activation_function(self, x):
@@ -28,9 +28,9 @@ class Perceptron:
         else:
             return 1
 
-    def predict(self, inputs_local, w1_local, w2_local):
-        ret_1 = inputs_local[0] * w1_local
-        ret_2 = inputs_local[1] * w2_local
+    def predict(self, inputs_local):
+        ret_1 = inputs_local[0] * self.w1
+        ret_2 = inputs_local[1] * self.w2
 
         return self.activation_function(ret_1 + ret_2)
 
