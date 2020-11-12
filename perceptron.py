@@ -11,6 +11,12 @@ class Perceptron:
         self.w2 = 0
         self.biais = 1
 
+    def get_w1(self):
+        return self.w1
+
+    def get_w2(self):
+        return self.w2
+
     def train(self, inputs, expected_outputs):
         error_values = np.zeros((11, 11))
         for i, raw in enumerate(inputs):

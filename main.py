@@ -41,9 +41,19 @@ print("tableau_moral_total:\n{}\n".format(tableau_moral_total))
 inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 expected_outputs = np.array([0, 0, 0, 1])
 
+# Init perceptron
 perceptron = perceptron.Perceptron(input_numbers=len(inputs), epoch=1, learning_rate=1)
 
+# Train perceptron and get error values
 error_values = perceptron.train(inputs, expected_outputs)
 
+# Write weights to CSV
+print("w1: {} - w2: {}".format(perceptron.get_w1(), perceptron.get_w2()))
+with open('output.csv', 'w', newline='') as csvfile:
+    spamwriter = csv.writer(csvfile, delimiter=';', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    spamwriter.writerow(["w1", "w2"])
+    spamwriter.writerow([perceptron.get_w1(), perceptron.get_w2()])
+
+# Display errors values
 plt.imshow(error_values)
 plt.show()
