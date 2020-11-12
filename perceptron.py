@@ -11,7 +11,7 @@ class Perceptron:
         self.w2 = 0
         self.biais = 1
 
-    def predict_all_errors(self, inputs, expected_outputs):
+    def train(self, inputs, expected_outputs):
         error_values = np.zeros((11, 11))
         for i, raw in enumerate(inputs):
             # w1 and w2 between -5 and 5
