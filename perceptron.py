@@ -34,7 +34,10 @@ class Perceptron:
         return error_values
 
     def train(self, inputs, expected_outputs):
+        #tableau pour vérifier la convergence
+        errors_2_epochs = [0 for i in range(2)]
         for epoch in range(self.epochs):
+            error_value = 0
             for i, raw in enumerate(inputs):
                 output = self.predict_with_biais(raw, self.w0, self.w1, self.w2)
                 print(f"[Perceptron] epoch: {epoch}")
@@ -45,6 +48,15 @@ class Perceptron:
                 self.w0 = self.weight_widrow_hoff(self.w0, output, expected_outputs[i], self.BIAIS)
                 self.w1 = self.weight_widrow_hoff(self.w1, output, expected_outputs[i], raw[0])
                 self.w2 = self.weight_widrow_hoff(self.w2, output, expected_outputs[i], raw[1])
+
+                error_value = error_value + self.calculate_error(output, expected_outputs[i])
+            errors_2_epochs[epoch % 2] = error_value
+            #comparer la valeur d'erreur dans les 2 dernières epochs et véfier si sa valeur est acceptable
+            if errors_2_epochs[0] < 0.2 and abs(errors_2_epochs[0] - errors_2_epochs[1]) < 0.1:
+                print(f"----------\n[Perceptron]Convergence detected at epoch: {epoch}\n--------")
+                break
+
+
 
     def activation_function(self, x):
         if x <= 0:
