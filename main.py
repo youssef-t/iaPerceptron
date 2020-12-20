@@ -63,7 +63,7 @@ for input_, expected_output in zip(inputs, expected_outputs):
 
 # Write weights to CSV
 with open('output.csv', 'w', newline='') as csvfile:
-    spam_writer = csv.writer(csvfile, delimiter=';', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    spam_writer = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     spam_writer.writerow(["w0", "w1", "w2"])
     spam_writer.writerow([perceptron.get_w0(), perceptron.get_w1(), perceptron.get_w2()])
 
@@ -71,3 +71,4 @@ with open('output.csv', 'w', newline='') as csvfile:
 print("[Main] --- Display errors_values ---")
 plt.imshow(error_values)
 plt.show()
+
